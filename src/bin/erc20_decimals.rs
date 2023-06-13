@@ -1,14 +1,12 @@
-use ethers::prelude::*; 
-use ethers::providers::{Http, Provider};
+use ethers::prelude::*;  
  
  
-use std::sync::Arc; 
- 
- 
+use std::sync::Arc;  
 
 
 use ethers_rs_examples::util::wallet_client::{WalletClient,WalletClientError};
 
+//more docs
 //https://www.gakonst.com/ethers-rs/
 
 #[tokio::main]
@@ -30,19 +28,13 @@ async fn main()   -> Result<(),WalletClientError> {
     //let provider = wallet_client.provider;
     //let wallet = wallet_client.wallet;
     let signer_middleware = Arc::clone(&wallet_client.signer_middleware);
-   
-       
     
-    // specify the contract address
+    
+    //specify the contract address
     //0xbtc on goerli 
-    let contract_address = match "0xab89a7742cb10e7bce98540fd05c7d731839cf9f".parse::<Address>() {
-        Ok(addr) => addr, 
-        Err( .. ) => return Err(  WalletClientError::AddressParseError )
-    };
+    let contract_address =   "0xab89a7742cb10e7bce98540fd05c7d731839cf9f".parse::<Address>() ?;
 
-    // Initialize contract
-    //let contract = Contract::new(contract_address, contract_abi_str.parse()?, wallet);
-
+    //Initialize contract 
     let token_contract = ERC20::new(contract_address, signer_middleware.clone());
     
     
@@ -50,10 +42,7 @@ async fn main()   -> Result<(),WalletClientError> {
         Ok(call) => call,
         Err( .. ) => return Err( WalletClientError::ContractCallError )        
     }; 
-    
-    //let receipt = signed_call.await  ;
-    
-      
+     
     println!("decimal result {} " , signed_call);
       
     

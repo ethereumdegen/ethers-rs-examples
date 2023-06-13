@@ -1,5 +1,4 @@
-use ethers::prelude::*; 
-use ethers::providers::{Http, Provider};
+use ethers::prelude::*;  
 use ethers::types::transaction::eip2930::AccessList;
  
  
@@ -12,7 +11,7 @@ use eyre::Result;
 use ethers_rs_examples::util::wallet_client::{WalletClient,WalletClientError};
 
 
-use ethers::types::{Address,Bytes};
+use ethers::types::{Address};
 
  
 
@@ -77,7 +76,7 @@ async fn main()   -> Result<(),WalletClientError> {
     let pending_tx = signer_middleware.send_transaction(transaction, None).await;
        match pending_tx {
         Ok( tx ) =>  {
-            println!("swap result {} " , tx.tx_hash())
+            println!("tx broadcasted: {} " , tx.tx_hash())
              } ,
         Err(e) => {
             println!("{}", e.to_string());
