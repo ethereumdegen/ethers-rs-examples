@@ -1,15 +1,11 @@
 use ethers::prelude::*;  
 use ethers::types::transaction::eip2930::AccessList;
  
- 
 use std::sync::Arc; 
- 
 
 use eyre::Result;
 
-
 use ethers_rs_examples::util::wallet_client::{WalletClient,WalletClientError};
-
 
 use ethers::types::{Address};
 
@@ -56,8 +52,7 @@ async fn main()   -> Result<(),WalletClientError> {
     println!("broadcasting from {}", wallet.address().clone() );
     
     // You could call this fn directly like this !! 
-    // transfer_call.send( ).await;
-    
+    // transfer_call.send( ).await;    
     
     //Or you can do it manually ! 
     let transaction:Eip1559TransactionRequest = Eip1559TransactionRequest {
